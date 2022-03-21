@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
-@Controller('courses')
-export class CoursesController {}
+@Controller('courses') // tudo que cair na rota /courses vai ser tratado por esse controller
+export class CoursesController {
+  @Get('list') // será chamado na requisição courses/list
+  FindAll() {
+    return 'All courses';
+  }
+}
