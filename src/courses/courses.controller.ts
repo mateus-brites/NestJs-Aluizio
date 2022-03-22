@@ -1,14 +1,15 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Res,
 } from '@nestjs/common';
-import { response } from 'express';
 
 @Controller('courses') // tudo que cair na rota /courses vai ser tratado por esse controller
 export class CoursesController {
@@ -28,5 +29,15 @@ export class CoursesController {
   Create(@Body() body) {
     // body é um objeto que contem todas as informações que estão sendo enviadas
     return body;
+  }
+
+  @Patch(':id')
+  Update(@Param('id') id: string, @Body() body) {
+    return `Atualização do curso ${id} para o curso ${body.newId}`;
+  }
+
+  @Delete(':id')
+  exclude(@Param() params) {
+    return `Curso #${params.id} excluido`;
   }
 }
